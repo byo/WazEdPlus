@@ -5,6 +5,16 @@
 $(function() {
 
 	var scriptId = 'wazedplus_root_script';
+
+	// My personal local server loader for development purposes,
+	// please don't use it if you don't know what you're doing!!!!
+	var s = document.createElement('script');
+	s.id = scriptId;
+	s.src = 'http://localhost/wazedplus/wazedplus.js';
+	document.getElementsByTagName('head')[0].appendChild(s);
+
+	return;
+/*
 	var githubUrl = 'https://raw.github.com/byo/WazEdPlus/';
 	var debugCookie = $.cookie('wazedplus_debug_branch');
 
@@ -50,4 +60,5 @@ $(function() {
 
 	// Load WazEdPlus components
 	loadScript('aerialshifter/main.js');
+*/
 });

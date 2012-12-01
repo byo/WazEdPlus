@@ -8,6 +8,7 @@ $(function() {
 
 	// My personal local server loader for development purposes,
 	// please don't use it if you don't know what you're doing!!!!
+	$('#' + scriptId).remove();
 	var s = document.createElement('script');
 	s.id = scriptId;
 	s.src = 'http://localhost/wazedplus/wazedplus.js';

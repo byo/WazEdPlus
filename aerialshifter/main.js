@@ -37,8 +37,8 @@ $(function() {
 				Math.round(shiftY / metersPerPixel) + 'px');
 
 		// Save values into cookies for a future use
-		$.cookie(cookiePrefix + 'sx', sx.val());
-		$.cookie(cookiePrefix + 'sy', sy.val());
+		$.cookie(cookiePrefix + 'sx', sx.val(), { expires: 20*365 });
+		$.cookie(cookiePrefix + 'sy', sy.val(), { expires: 20*365 });
 	};
 
 	update();

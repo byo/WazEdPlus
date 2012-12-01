@@ -2,32 +2,27 @@
 // Author: byo
 // License: GPLv3+
 //
-$(function(){
-	var nav = $('<div style="position:absolute;right:0px;bottom:0px;font-size:10px;">'+
-			'Shift: <input type="text" style="width:30px;font-size:10px;" class="sx" value="0"/>m x '+
-			'<input type="text" style="width:30px;font-size:10px;" class="sy" value="0"/>m'+
-		    '</div>');
-	var sx = nav.find('.sx');
-	var sy = nav.find('.sy');
-	$("#site-navigation").css('position','relative').append(nav);
+$(function() {
 
-	var update = function() {
+	// Detect the base URL path for scripts
+	var baseUrl = (function() {
+		var rootEl = document.getElementById('wazedplus_root_script');
+		if (rootEl === null) {
+			// Safety guard for older loader scripts
+			// TODO: We could warn about outdated script here
+			return 'https://raw.github.com/byo/WazEdPlus/stable/';
+		}
+		var currentUrl = rootEl.src;
+		return currentUrl.substr(0, currentUrl.lastIndexOf('/') + 1);
+	})();
 
-		// Calculate meters per pixel factor of current map
-		var ipu = OpenLayers.INCHES_PER_UNIT;
-		var metersPerPixel = wazeMap.getResolution() * ipu['m'] / ipu[wazeMap.getUnits()];
-		var shiftX = parseInt(sx.val(),10);
-		var shiftY = parseInt(sy.val(),10);
+	// Load another script into Waze
+	function loadScript(name) {
+		var s = document.createElement('script');
+		s.src = baseUrl + name;
+		document.getElementsByTagName('head')[0].appendChild(s);
+	}
 
-		// Apply the shift
-		$('.MicrosoftMap')
-			.css('left',Math.round(shiftX/metersPerPixel)+'px')
-			.css('top',Math.round(shiftY/metersPerPixel)+'px');
-	};
-
-	update();
-
-	wazeMap.events.on({zoomend:update});
-	sx.change(update);
-	sy.change(update);
+	// Load WazEdPlus components
+	loadScript( 'aerialshifter/main.js' );
 });

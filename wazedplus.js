@@ -31,7 +31,7 @@ $(function() {
 	if (debugCookie !== null) {
 
 		// Generate new script's URL to load
-		var newBaseUrl = githubUrl + debugCookie;
+		var newBaseUrl = githubUrl + debugCookie + '/';
 		if (newBaseUrl != baseUrl) {
 			setTimeout(function() {
 				// Replace the main script with the debug one
@@ -40,7 +40,7 @@ $(function() {
 				// Append new script in place of the old one
 				var s = document.createElement('script');
 				s.id = scriptId;
-				s.src = newBaseUrl + '/wazedplus.js';
+				s.src = newBaseUrl + 'wazedplus.js';
 				document.getElementsByTagName('head')[0].appendChild(s);
 			}, 1000);
 			// Jump out of here, don't load components

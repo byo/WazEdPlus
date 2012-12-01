@@ -4,7 +4,7 @@
 //
 $(function() {
 
-	var nav = $('<div style="position:absolute;right:0px;bottom:0px;font-size:10px;">'
+	var nav = $('<div style="position:absolute;right:0px;bottom:0px;font-size:10px;color:#fff;">'
 			+ 'Shift: <input type="text" style="width:30px;font-size:10px;" class="sx" value="0"/>m x '
 			+ '<input type="text" style="width:30px;font-size:10px;" class="sy" value="0"/>m'
 			+ '</div>');

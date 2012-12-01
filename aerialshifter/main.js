@@ -14,15 +14,25 @@ $(function() {
 
 	var cookiePrefix = 'wazedplus_aerialshifter_';
 
-	// Restore values from cookies
-	if ($.cookie(cookiePrefix + 'sx') !== null) {
-		sx.val($.cookie(cookiePrefix + 'sx'));
-	}
-	if ($.cookie(cookiePrefix + 'sy') !== null) {
-		sx.val($.cookie(cookiePrefix + 'sy'));
+	function loadFromCookies() {
+		var val = $.cookie(cookiePrefix + 'sx');
+		if (val !== null)
+			sx.val(val);
+		val = $.cookie(cookiePrefix + 'sy');
+		if (val !== null)
+			sy.val(val);
 	}
 
-	var update = function() {
+	function saveToCookies() {
+		$.cookie(cookiePrefix + 'sx', sx.val(), {
+			expires : 20 * 365
+		});
+		$.cookie(cookiePrefix + 'sy', sy.val(), {
+			expires : 20 * 365
+		});
+	}
+
+	function update() {
 
 		// Calculate meters per pixel factor of current map
 		var ipu = OpenLayers.INCHES_PER_UNIT;
@@ -36,11 +46,10 @@ $(function() {
 				Math.round(shiftX / metersPerPixel) + 'px').css('top',
 				Math.round(shiftY / metersPerPixel) + 'px');
 
-		// Save values into cookies for a future use
-		$.cookie(cookiePrefix + 'sx', sx.val(), { expires: 20*365 });
-		$.cookie(cookiePrefix + 'sy', sy.val(), { expires: 20*365 });
-	};
+		saveToCookies();
+	}
 
+	loadFromCookies();
 	update();
 
 	wazeMap.events.on({

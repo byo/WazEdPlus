@@ -29,10 +29,11 @@ $(function() {
 
 	// Detect a debug mode allowing to overwrite the root URL
 	if (debugCookie !== null) {
+		if (typeof (window.wazedplus_debug_redirect_done) == 'undefined') {
+			window.wazedplus_debug_redirect_done = true;
 
-		// Generate new script's URL to load
-		var newBaseUrl = githubUrl + debugCookie + '/';
-		if (newBaseUrl != baseUrl) {
+			// Generate new script's URL to load
+			var newBaseUrl = githubUrl + debugCookie + '/';
 			setTimeout(function() {
 				// Replace the main script with the debug one
 				$('#' + scriptId).remove();

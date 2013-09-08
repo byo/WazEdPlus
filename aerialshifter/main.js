@@ -42,7 +42,7 @@ $(function() {
 		var shiftY = parseInt(sy.val(), 10);
 
 		// Apply the shift
-		$('.OpenLayers.Layer.Google_47').css('left',
+		$('#OpenLayers\\.Layer\\.Google_47').css('left',
 				Math.round(shiftX / metersPerPixel) + 'px').css('top',
 				Math.round(shiftY / metersPerPixel) + 'px');
 
